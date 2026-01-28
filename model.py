@@ -93,7 +93,7 @@ class LayerNormalizations(nn.Module):
         value = (x-mean)/((var + self.eps)**0.5)
         return value * self.alpha + self.beta
 
-class ResidualNetwrorks(nn.Module):
+class ResidualNetworks(nn.Module):
     def __init__(self, config: ModelArgs):
         super().__init__()
         pass
@@ -163,7 +163,7 @@ class FeedForwardLayer(nn.Module):
 class EncoderBlock(nn.Module):
     def __init__(self, config: ModelArgs):
         super().__init__()
-        self.res = ResidualNetwrorks(config)
+        self.res = ResidualNetworks(config)
         self.norm1 = LayerNormalizations(config)
         self.norm2 = LayerNormalizations(config)
         self.self_attn = SelfAttention(config)
