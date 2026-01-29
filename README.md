@@ -1,9 +1,9 @@
-# LucidViT 🧠
+# nanoViT 🧠
 
 > A clean, professional, and improved implementation of **Vision Transformers (ViT)** built from scratch in PyTorch. Designed for transparency, research experimentation, and high-performance training.
 
 ## 📌 Overview
-**LucidViT** (formerly *ViT Scratch*) is a minimalist yet powerful implementation of the Vision Transformer architecture. Unlike standard implementations, this project integrates modern architectural enhancements—such as **SwiGLU** activations and **Rotary Positional Embeddings (RoPE)**—to improve training stability and performance.
+**nanoViT** (formerly *ViT Scratch*) is a minimalist yet powerful implementation of the Vision Transformer architecture. Unlike standard implementations, this project integrates modern architectural enhancements—such as **SwiGLU** activations and **Rotary Positional Embeddings (RoPE)**—to improve training stability and performance.
 
 This repository serves as a clear reference for understanding how state-of-the-art attention mechanisms and transformer components are built and trained on vision datasets like **Tiny ImageNet**.
 
@@ -51,7 +51,7 @@ This repository serves as a clear reference for understanding how state-of-the-a
 
 ## 📂 Project Structure
 ```
-LucidViT/
+nanoViT/
 ├── config.py              # Configuration dataclass (ModelArgs)
 ├── model.py               # Core Vision Transformer implementation (RoPE, SwiGLU, Attention)
 ├── load_image_dataset.py  # Data loading logic (Tiny ImageNet via Hugging Face)
