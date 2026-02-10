@@ -5,9 +5,12 @@ from torchvision.transforms import InterpolationMode
 from PIL import Image
 import torch
 from torch.utils.data import Dataset
+from config import ModelArgs
+
+data_cfg = ModelArgs()
 
 def load_data(mode='train'):
-    tiny_imagenet = load_dataset('Maysee/tiny-imagenet', split=mode)
+    tiny_imagenet = load_dataset('Maysee/tiny-imagenet', cache_dir=data_cfg.data_folder_path, split=mode)
     return tiny_imagenet
 
 class ImageDataset(Dataset):
@@ -20,10 +23,11 @@ class ImageDataset(Dataset):
             mean=[0.485, 0.456, 0.406], 
             std=[0.229, 0.224, 0.225]
         )
-        if self.mode:
+        if self.mode == 'train':
             self.trans_module = transforms.Compose([
                 transforms.Lambda(lambda x: x.convert("RGB")),
                 transforms.ToTensor(),
+                transforms.RandomHorizontalFlip(p=0.5),
                 transforms.Resize((self.image_size, self.image_size), interpolation=InterpolationMode.BILINEAR),
                 normalize,
             ])
@@ -42,7 +46,7 @@ class ImageDataset(Dataset):
         indexed_data = self.ds[idx]
         img_obj = indexed_data['image']
         label = indexed_data['label']
-        label_tensor = torch.tensor(label, dtype=torch.long).view(-1)
+        label_tensor = torch.tensor(label, dtype=torch.long)
         img_obj = self.trans_module(img_obj)
         return img_obj, label_tensor
 

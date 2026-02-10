@@ -153,7 +153,7 @@ class FeedForwardLayer(nn.Module):
         self.activation = SwiGLU()
     
     def forward(self, x: torch.Tensor):
-        gate = self.activation(self.w1(x))
+        gate = F.silu(self.w1(x))
         value = self.w2(x)
         x = self.w3(gate * value)
         x = self.dp(x)
